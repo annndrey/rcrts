@@ -1,0 +1,11 @@
+1. main page
+2. users (login/register)
+3. subscriptions (add/delete/edit subscription)
+4. admin (manage users)
+
+1. mysql 
+2. redis
+3. celery
+4. sqlalchemy
+5. flask blueprints to organize app parts
+6. bootstrap for frontend

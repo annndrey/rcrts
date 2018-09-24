@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=True) %}
+{% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{category}}" role="alert">
+      {{ message }}
+    </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+
+subscr template. 
+
+{% if current_user.is_authenticated %}
+Hi {{ current_user.login }}!
+You have {{current_user.subscr_left }} subscriptions left
+{% endif %}
+
+<a href="{{url_for('subscriptions.subscriptions_add')}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">New subscription</a>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">text</th>
+      <th scope="col">query</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for subscr in subscrs %}
+   
+    <tr>
+      <th scope="row">{{ subscr.id }}</th>
+      <td>some text</td>
+      <td>query</td>
+      <td><a href="{{url_for('subscriptions.subscriptions_edit', sub_id=subscr.id)}}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">edit</a> <a href="{{url_for('subscriptions.subscriptions_delete', sub_id=subscr.id)}}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">delete</a></td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+
+{% endblock %}
